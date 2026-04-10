@@ -116,6 +116,5 @@ pip install --index-url https://test.pypi.org/simple/ azure-functions-knowledge
 ## Related
 
 - [CHANGELOG.md](https://github.com/yeongseon/azure-functions-knowledge/blob/main/CHANGELOG.md)
-- [Development Guide](development.md)
-- [Contributing](contributing.md)
+- [Contributing](https://github.com/yeongseon/azure-functions-knowledge/blob/main/CONTRIBUTING.md)
 - [PyPI Publishing with Hatch](https://hatch.pypa.io/latest/publishing/)
