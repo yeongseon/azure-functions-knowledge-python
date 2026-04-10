@@ -5,25 +5,25 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 
-Read this in: [한국어](README.ko.md) | [日本語](README.ja.md) | [简体中文](README.zh-CN.md)
+Azure Functions Python v2용 지식 검색(RAG) 데코레이터입니다.
 
-Knowledge retrieval (RAG) decorators for Azure Functions Python v2.
+다른 언어로 읽기: [English](README.md) | [日本語](README.ja.md) | [简体中文](README.zh-CN.md)
 
-## Features
+## 기능
 
-- **Decorator-based API** — Seamless integration with Azure Functions Python v2 programming model
-- **Provider abstraction** — Pluggable knowledge providers via protocol-based interface
-- **Notion support** — Built-in Notion provider for searching and retrieving pages
-- **Async support** — Automatic async offloading for non-blocking execution
-- **Environment variable resolution** — `%VAR%` placeholder substitution for secure credential handling
+- **데코레이터 기반 API** — Azure Functions Python v2 프로그래밍 모델과의 원활한 통합
+- **프로바이더 추상화** — 프로토콜 기반 인터페이스를 통한 플러거블 지식 프로바이더
+- **Notion 지원** — 페이지 검색 및 조회를 위한 내장 Notion 프로바이더
+- **비동기 지원** — 논블로킹 실행을 위한 자동 비동기 오프로딩
+- **환경 변수 해석** — 안전한 자격 증명 처리를 위한 `%VAR%` 플레이스홀더 치환
 
-## Installation
+## 설치
 
 ```bash
 pip install azure-functions-knowledge[notion]
 ```
 
-## Quick Start
+## 빠른 시작
 
 ```python
 import azure.functions as func
@@ -46,11 +46,11 @@ def search(req: func.HttpRequest, docs: list[Document]) -> func.HttpResponse:
     return func.HttpResponse(json.dumps(results), mimetype="application/json")
 ```
 
-## Decorators
+## 데코레이터
 
-### `input` — Data Injection
+### `input` — 데이터 주입
 
-Searches a knowledge provider and injects results into the handler:
+지식 프로바이더를 검색하고 결과를 핸들러에 주입합니다:
 
 ```python
 @kb.input("docs", provider="notion", query="roadmap", connection="%NOTION_TOKEN%")
@@ -59,22 +59,9 @@ def handler(timer, docs: list[Document]) -> None:
         print(doc.title, doc.url)
 ```
 
-Dynamic queries from handler parameters:
+### `inject_client` — 클라이언트 주입
 
-```python
-@kb.input(
-    "docs",
-    provider="notion",
-    query=lambda req: req.params.get("q", ""),
-    connection="%NOTION_TOKEN%",
-)
-def handler(req, docs: list[Document]) -> func.HttpResponse:
-    ...
-```
-
-### `inject_client` — Client Injection
-
-Injects a provider instance for imperative control:
+명령적 제어를 위해 프로바이더 인스턴스를 주입합니다:
 
 ```python
 @kb.inject_client("client", provider="notion", connection="%NOTION_TOKEN%")
@@ -84,23 +71,9 @@ def handler(req, client) -> func.HttpResponse:
     ...
 ```
 
-## Composition Rules
+## 커스텀 프로바이더
 
-- Azure decorators outermost, knowledge decorators closest to the function
-- `input` and `inject_client` are mutually exclusive
-- No decorator can be applied twice to the same handler
-
-## Connection Strings
-
-```python
-connection="%NOTION_TOKEN%"          # Single env var
-connection="Bearer %API_KEY%"        # Partial substitution
-connection={"token": "%MY_TOKEN%"}   # Mapping with substitution
-```
-
-## Custom Providers
-
-Implement the `KnowledgeProvider` protocol and register:
+`KnowledgeProvider` 프로토콜을 구현하고 등록합니다:
 
 ```python
 from azure_functions_knowledge import Document, register_provider
@@ -121,19 +94,10 @@ class MyProvider:
 register_provider("my-provider", MyProvider)
 ```
 
-## Documentation
+## 문서
 
-Full documentation: [https://yeongseon.github.io/azure-functions-knowledge/](https://yeongseon.github.io/azure-functions-knowledge/)
+전체 문서: [https://yeongseon.github.io/azure-functions-knowledge/](https://yeongseon.github.io/azure-functions-knowledge/)
 
-## Development
+## 라이선스
 
-```bash
-git clone https://github.com/yeongseon/azure-functions-knowledge.git
-cd azure-functions-knowledge
-make install
-make check-all
-```
-
-## License
-
-MIT License. See [LICENSE](LICENSE) for details.
+MIT License. 자세한 내용은 [LICENSE](LICENSE)를 참조하세요.

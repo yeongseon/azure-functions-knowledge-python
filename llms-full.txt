@@ -1,0 +1,189 @@
+# azure-functions-knowledge — Full Reference
+
+> Knowledge retrieval (RAG) decorators for Azure Functions Python v2.
+
+## Package Info
+
+- PyPI: `pip install azure-functions-knowledge`
+- Extras: `pip install azure-functions-knowledge[notion]`
+- Version: 0.0.1
+- Python: >=3.10, <3.15
+- License: MIT
+- Docs: https://yeongseon.github.io/azure-functions-knowledge/
+- Repository: https://github.com/yeongseon/azure-functions-knowledge
+
+## What It Does
+
+Provides decorator-based knowledge retrieval bindings for Azure Functions Python v2.
+Handlers receive search results or provider clients as injected parameters — no manual
+API calls needed. Supports sync and async handlers with automatic thread offloading.
+
+## Architecture
+
+```
+KnowledgeBindings
+├── input(arg_name, provider, query, top, connection)
+│   ├── Static query: query="roadmap"
+│   └── Dynamic query: query=lambda req: req.params.get("q", "")
+└── inject_client(arg_name, provider, connection)
+    └── Gives direct access to provider.search() / provider.get_document()
+
+Provider Registry
+├── register_provider(name, cls)
+├── create_provider(name, connection)
+└── Built-in: "notion" (auto-registered when notion-client installed)
+```
+
+## Public API — Full Signatures
+
+### KnowledgeBindings
+
+```python
+class KnowledgeBindings:
+    def input(
+        self,
+        arg_name: str,
+        *,
+        provider: str,
+        query: str | Callable[..., str],
+        top: int = 5,
+        connection: str | Mapping[str, str],
+        **kwargs: Any,
+    ) -> Callable[[Callable[..., Any]], Callable[..., Any]]: ...
+
+    def inject_client(
+        self,
+        arg_name: str,
+        *,
+        provider: str,
+        connection: str | Mapping[str, str],
+        **kwargs: Any,
+    ) -> Callable[[Callable[..., Any]], Callable[..., Any]]: ...
+```
+
+### Document
+
+```python
+@dataclass(kw_only=True)
+class Document:
+    document_id: str
+    content: str
+    title: str
+    url: str
+    source: str
+    metadata: dict[str, Any] = field(default_factory=dict)
+    score: float | None = None
+```
+
+### KnowledgeProvider Protocol
+
+```python
+@runtime_checkable
+class KnowledgeProvider(Protocol):
+    def search(self, query: str, *, top: int = 5) -> list[Document]: ...
+    def get_document(self, document_id: str) -> Document: ...
+    def close(self) -> None: ...
+```
+
+### Provider Registry
+
+```python
+def register_provider(name: str, provider_cls: type[KnowledgeProvider]) -> None: ...
+def create_provider(name: str, *, connection: str | Mapping[str, str], **kwargs: Any) -> KnowledgeProvider: ...
+def get_registered_providers() -> list[str]: ...
+```
+
+### Auth
+
+```python
+def resolve_connection(value: str) -> str: ...
+```
+
+Resolves `%VAR%` placeholders with environment variables. Raises `ConfigurationError`
+when a referenced variable is not set.
+
+## Exceptions
+
+```python
+class KnowledgeError(Exception): ...
+class ConfigurationError(KnowledgeError): ...
+class ProviderError(KnowledgeError): ...
+class AuthError(KnowledgeError): ...
+```
+
+## Connection String Patterns
+
+```python
+connection="%NOTION_TOKEN%"          # Full env var substitution
+connection="Bearer %API_KEY%"        # Partial substitution
+connection={"token": "%MY_TOKEN%"}   # Mapping with substitution
+```
+
+## Composition Rules
+
+1. Azure decorators outermost, knowledge decorators closest to the function
+2. `input` and `inject_client` are mutually exclusive on the same handler
+3. No decorator can be applied twice to the same handler
+4. `arg_name` must exist in the function signature
+5. `arg_name` must not conflict with Azure reserved names (timer, req, context, msg, input, output)
+
+## Quick Start
+
+```python
+import azure.functions as func
+from azure_functions_knowledge import Document, KnowledgeBindings
+
+app = func.FunctionApp()
+kb = KnowledgeBindings()
+
+@app.route(route="search", methods=["GET"])
+@kb.input(
+    "docs",
+    provider="notion",
+    query=lambda req: req.params.get("q", ""),
+    top=5,
+    connection="%NOTION_TOKEN%",
+)
+def search(req: func.HttpRequest, docs: list[Document]) -> func.HttpResponse:
+    import json
+    results = [{"title": d.title, "url": d.url} for d in docs]
+    return func.HttpResponse(json.dumps(results), mimetype="application/json")
+```
+
+## Custom Provider Example
+
+```python
+from azure_functions_knowledge import Document, register_provider
+
+class MyProvider:
+    def __init__(self, *, connection, **kwargs):
+        self.api_key = connection
+
+    def search(self, query: str, *, top: int = 5) -> list[Document]:
+        return [Document(document_id="1", content="...", title="Result", url="", source="my-provider")]
+
+    def get_document(self, document_id: str) -> Document:
+        return Document(document_id=document_id, content="...", title="Doc", url="", source="my-provider")
+
+    def close(self) -> None:
+        pass
+
+register_provider("my-provider", MyProvider)
+```
+
+## Ecosystem
+
+Part of the **Azure Functions Python DX Toolkit**.
+
+| Package | Role |
+|---------|------|
+| azure-functions-openapi | OpenAPI spec generation and Swagger UI |
+| azure-functions-validation | Request/response validation and serialization |
+| azure-functions-db | Database bindings |
+| azure-functions-logging | Structured logging |
+| **azure-functions-knowledge** | **Knowledge retrieval (RAG) decorators** |
+| azure-functions-langgraph | LangGraph deployment adapter |
+| azure-functions-durable-graph | Durable Functions graph runtime |
+| azure-functions-doctor | Pre-deploy diagnostic CLI |
+| azure-functions-scaffold | Project scaffolding CLI |
+| azure-functions-python-cookbook | Recipes and examples |

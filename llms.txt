@@ -1,0 +1,36 @@
+# azure-functions-knowledge
+
+> Knowledge retrieval (RAG) decorators for Azure Functions Python v2.
+
+## Package Info
+
+- PyPI: `pip install azure-functions-knowledge`
+- Version: 0.0.1
+- Python: >=3.10, <3.15
+- License: MIT
+- Docs: https://yeongseon.github.io/azure-functions-knowledge/
+- Repository: https://github.com/yeongseon/azure-functions-knowledge
+
+## What It Does
+
+Decorator-based knowledge retrieval bindings for Azure Functions v2. Inject search
+results or provider clients into handler parameters. Built-in Notion support with
+pluggable provider protocol.
+
+## Core API
+
+- `KnowledgeBindings` — Main class providing decorator methods
+- `KnowledgeBindings.input(arg_name, provider, query, top, connection)` — Inject search results
+- `KnowledgeBindings.inject_client(arg_name, provider, connection)` — Inject provider instance
+- `Document` — Dataclass for retrieved knowledge documents
+- `KnowledgeProvider` — Protocol that all providers must satisfy
+- `register_provider(name, provider_cls)` — Register a custom provider
+- `create_provider(name, connection)` — Create a provider by registered name
+- `resolve_connection(value)` — Resolve `%VAR%` placeholders in connection strings
+
+## Key Concepts
+
+- Azure decorators outermost, knowledge decorators closest to the function
+- `input` and `inject_client` are mutually exclusive on the same handler
+- Connection strings support `%VAR%` environment variable substitution
+- Async handlers get automatic `asyncio.to_thread` offloading
