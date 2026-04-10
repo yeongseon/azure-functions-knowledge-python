@@ -43,11 +43,11 @@ dev = [
     "coverage",
     "git-cliff",
     "hatch",
-    "mypy==1.19.1",
+    "mypy==1.20.0",
     "pre-commit",
     "pytest",
     "pytest-cov",
-    "ruff==0.15.7",
+    "ruff==0.15.9",
 ]
 docs = [
     "mkdocs<2.0",

@@ -5,25 +5,25 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 
-Read this in: [한국어](README.ko.md) | [日本語](README.ja.md) | [简体中文](README.zh-CN.md)
+Azure Functions Python v2 的知识检索（RAG）装饰器。
 
-Knowledge retrieval (RAG) decorators for Azure Functions Python v2.
+其他语言: [English](README.md) | [한국어](README.ko.md) | [日本語](README.ja.md)
 
-## Features
+## 功能
 
-- **Decorator-based API** — Seamless integration with Azure Functions Python v2 programming model
-- **Provider abstraction** — Pluggable knowledge providers via protocol-based interface
-- **Notion support** — Built-in Notion provider for searching and retrieving pages
-- **Async support** — Automatic async offloading for non-blocking execution
-- **Environment variable resolution** — `%VAR%` placeholder substitution for secure credential handling
+- **基于装饰器的 API** — 与 Azure Functions Python v2 编程模型无缝集成
+- **Provider 抽象** — 通过基于协议的接口实现可插拔的知识 Provider
+- **Notion 支持** — 内置 Notion Provider，支持页面搜索和检索
+- **异步支持** — 自动异步卸载，实现非阻塞执行
+- **环境变量解析** — 通过 `%VAR%` 占位符替换实现安全的凭证处理
 
-## Installation
+## 安装
 
 ```bash
 pip install azure-functions-knowledge[notion]
 ```
 
-## Quick Start
+## 快速开始
 
 ```python
 import azure.functions as func
@@ -46,11 +46,11 @@ def search(req: func.HttpRequest, docs: list[Document]) -> func.HttpResponse:
     return func.HttpResponse(json.dumps(results), mimetype="application/json")
 ```
 
-## Decorators
+## 装饰器
 
-### `input` — Data Injection
+### `input` — 数据注入
 
-Searches a knowledge provider and injects results into the handler:
+搜索知识 Provider 并将结果注入到处理器中：
 
 ```python
 @kb.input("docs", provider="notion", query="roadmap", connection="%NOTION_TOKEN%")
@@ -59,22 +59,9 @@ def handler(timer, docs: list[Document]) -> None:
         print(doc.title, doc.url)
 ```
 
-Dynamic queries from handler parameters:
+### `inject_client` — 客户端注入
 
-```python
-@kb.input(
-    "docs",
-    provider="notion",
-    query=lambda req: req.params.get("q", ""),
-    connection="%NOTION_TOKEN%",
-)
-def handler(req, docs: list[Document]) -> func.HttpResponse:
-    ...
-```
-
-### `inject_client` — Client Injection
-
-Injects a provider instance for imperative control:
+注入 Provider 实例以进行命令式控制：
 
 ```python
 @kb.inject_client("client", provider="notion", connection="%NOTION_TOKEN%")
@@ -84,23 +71,9 @@ def handler(req, client) -> func.HttpResponse:
     ...
 ```
 
-## Composition Rules
+## 自定义 Provider
 
-- Azure decorators outermost, knowledge decorators closest to the function
-- `input` and `inject_client` are mutually exclusive
-- No decorator can be applied twice to the same handler
-
-## Connection Strings
-
-```python
-connection="%NOTION_TOKEN%"          # Single env var
-connection="Bearer %API_KEY%"        # Partial substitution
-connection={"token": "%MY_TOKEN%"}   # Mapping with substitution
-```
-
-## Custom Providers
-
-Implement the `KnowledgeProvider` protocol and register:
+实现 `KnowledgeProvider` 协议并注册：
 
 ```python
 from azure_functions_knowledge import Document, register_provider
@@ -121,19 +94,10 @@ class MyProvider:
 register_provider("my-provider", MyProvider)
 ```
 
-## Documentation
+## 文档
 
-Full documentation: [https://yeongseon.github.io/azure-functions-knowledge/](https://yeongseon.github.io/azure-functions-knowledge/)
+完整文档: [https://yeongseon.github.io/azure-functions-knowledge/](https://yeongseon.github.io/azure-functions-knowledge/)
 
-## Development
+## 许可证
 
-```bash
-git clone https://github.com/yeongseon/azure-functions-knowledge.git
-cd azure-functions-knowledge
-make install
-make check-all
-```
-
-## License
-
-MIT License. See [LICENSE](LICENSE) for details.
+MIT License。详情请参阅 [LICENSE](LICENSE)。
