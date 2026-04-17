@@ -1,5 +1,5 @@
 [project]
-name = "azure-functions-knowledge"
+name = "azure-functions-knowledge-python"
 description = "Knowledge retrieval (RAG) decorators for Azure Functions Python v2"
 keywords = ["azure-functions", "azure", "python", "v2", "knowledge", "rag", "retrieval", "notion", "serverless", "binding", "input-binding", "decorator"]
 authors = [{ name = "Yeongseon Choe", email = "yeongseon.choe@gmail.com" }]
@@ -27,10 +27,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://yeongseon.github.io/azure-functions-knowledge/"
-Documentation = "https://yeongseon.github.io/azure-functions-knowledge/"
-Repository = "https://github.com/yeongseon/azure-functions-knowledge"
-Issues = "https://github.com/yeongseon/azure-functions-knowledge/issues"
+Homepage = "https://yeongseon.github.io/azure-functions-knowledge-python/"
+Documentation = "https://yeongseon.github.io/azure-functions-knowledge-python/"
+Repository = "https://github.com/yeongseon/azure-functions-knowledge-python"
+Issues = "https://github.com/yeongseon/azure-functions-knowledge-python/issues"
 
 [project.optional-dependencies]
 notion = ["notion-client>=2.0"]

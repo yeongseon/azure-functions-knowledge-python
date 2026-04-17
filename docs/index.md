@@ -1,4 +1,4 @@
-# azure-functions-knowledge
+# azure-functions-knowledge-python
 
 Knowledge retrieval (RAG) decorators for Azure Functions Python v2.
 

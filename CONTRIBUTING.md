@@ -1,6 +1,6 @@
 # Contributing Guide
 
-We welcome contributions to the `azure-functions-knowledge` project.
+We welcome contributions to the `azure-functions-knowledge-python` project.
 
 ## Branch Strategy
 

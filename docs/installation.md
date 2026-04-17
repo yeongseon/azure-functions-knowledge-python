@@ -3,26 +3,26 @@
 ## Basic Installation
 
 ```bash
-pip install azure-functions-knowledge
+pip install azure-functions-knowledge-python
 ```
 
 ## With Notion Provider
 
 ```bash
-pip install azure-functions-knowledge[notion]
+pip install azure-functions-knowledge-python[notion]
 ```
 
 ## With All Providers
 
 ```bash
-pip install azure-functions-knowledge[all]
+pip install azure-functions-knowledge-python[all]
 ```
 
 ## Development Installation
 
 ```bash
-git clone https://github.com/yeongseon/azure-functions-knowledge.git
-cd azure-functions-knowledge
+git clone https://github.com/yeongseon/azure-functions-knowledge-python.git
+cd azure-functions-knowledge-python
 make install
 ```
 

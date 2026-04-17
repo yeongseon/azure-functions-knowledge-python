@@ -1,6 +1,6 @@
 # Release Process
 
-This document outlines the steps to release a new version of **azure-functions-knowledge** to PyPI and update the changelog using the existing Makefile and Hatch-based workflows.
+This document outlines the steps to release a new version of **azure-functions-knowledge-python** to PyPI and update the changelog using the existing Makefile and Hatch-based workflows.
 
 ---
 
@@ -95,7 +95,7 @@ make publish-test
 To install from TestPyPI:
 
 ```bash
-pip install --index-url https://test.pypi.org/simple/ azure-functions-knowledge
+pip install --index-url https://test.pypi.org/simple/ azure-functions-knowledge-python
 ```
 
 ---
@@ -115,6 +115,6 @@ pip install --index-url https://test.pypi.org/simple/ azure-functions-knowledge
 
 ## Related
 
-- [CHANGELOG.md](https://github.com/yeongseon/azure-functions-knowledge/blob/main/CHANGELOG.md)
-- [Contributing](https://github.com/yeongseon/azure-functions-knowledge/blob/main/CONTRIBUTING.md)
+- [CHANGELOG.md](https://github.com/yeongseon/azure-functions-knowledge-python/blob/main/CHANGELOG.md)
+- [Contributing](https://github.com/yeongseon/azure-functions-knowledge-python/blob/main/CONTRIBUTING.md)
 - [PyPI Publishing with Hatch](https://hatch.pypa.io/latest/publishing/)

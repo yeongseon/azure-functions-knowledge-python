@@ -1,16 +1,16 @@
-# azure-functions-knowledge — Full Reference
+# azure-functions-knowledge-python — Full Reference
 
 > Knowledge retrieval (RAG) decorators for Azure Functions Python v2.
 
 ## Package Info
 
-- PyPI: `pip install azure-functions-knowledge`
-- Extras: `pip install azure-functions-knowledge[notion]`
+- PyPI: `pip install azure-functions-knowledge-python`
+- Extras: `pip install azure-functions-knowledge-python[notion]`
 - Version: 0.0.1
 - Python: >=3.10, <3.15
 - License: MIT
-- Docs: https://yeongseon.github.io/azure-functions-knowledge/
-- Repository: https://github.com/yeongseon/azure-functions-knowledge
+- Docs: https://yeongseon.github.io/azure-functions-knowledge-python/
+- Repository: https://github.com/yeongseon/azure-functions-knowledge-python
 
 ## What It Does
 
@@ -177,13 +177,13 @@ Part of the **Azure Functions Python DX Toolkit**.
 
 | Package | Role |
 |---------|------|
-| azure-functions-openapi | OpenAPI spec generation and Swagger UI |
-| azure-functions-validation | Request/response validation and serialization |
-| azure-functions-db | Database bindings |
-| azure-functions-logging | Structured logging |
-| **azure-functions-knowledge** | **Knowledge retrieval (RAG) decorators** |
-| azure-functions-langgraph | LangGraph deployment adapter |
-| azure-functions-durable-graph | Durable Functions graph runtime |
-| azure-functions-doctor | Pre-deploy diagnostic CLI |
-| azure-functions-scaffold | Project scaffolding CLI |
-| azure-functions-python-cookbook | Recipes and examples |
+| azure-functions-openapi-python | OpenAPI spec generation and Swagger UI |
+| azure-functions-validation-python | Request/response validation and serialization |
+| azure-functions-db-python | Database bindings |
+| azure-functions-logging-python | Structured logging |
+| **azure-functions-knowledge-python** | **Knowledge retrieval (RAG) decorators** |
+| azure-functions-langgraph-python | LangGraph deployment adapter |
+| azure-functions-durable-graph-python | Durable Functions graph runtime |
+| azure-functions-doctor-python | Pre-deploy diagnostic CLI |
+| azure-functions-scaffold-python | Project scaffolding CLI |
+| azure-functions-cookbook-python | Recipes and examples |

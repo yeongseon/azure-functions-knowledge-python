@@ -1,7 +1,7 @@
 # AGENTS.md
 
 ## Purpose
-`azure-functions-knowledge` provides knowledge retrieval (RAG) decorators for Azure Functions Python v2 applications.
+`azure-functions-knowledge-python` provides knowledge retrieval (RAG) decorators for Azure Functions Python v2 applications.
 
 ## Read First
 - `README.md`

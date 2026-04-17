@@ -1,8 +1,8 @@
-# PRD - azure-functions-knowledge
+# PRD - azure-functions-knowledge-python
 
 ## Overview
 
-`azure-functions-knowledge` provides knowledge retrieval (RAG) decorators for the
+`azure-functions-knowledge-python` provides knowledge retrieval (RAG) decorators for the
 Azure Functions Python v2 programming model.
 
 It is intended for decorator-based `func.FunctionApp()` applications that want provider-backed
@@ -40,7 +40,7 @@ patterns across function apps.
 
 - Maintainers of Azure Functions Python APIs that need RAG-style retrieval
 - Teams adopting decorator-based Azure Functions and wanting provider abstraction
-- Users pairing this package with `azure-functions-openapi` and `azure-functions-validation`
+- Users pairing this package with `azure-functions-openapi-python` and `azure-functions-validation-python`
 
 ## Core Use Cases
 
@@ -61,7 +61,7 @@ patterns across function apps.
 ### Philosophy
 
 Small-ecosystem libraries succeed when developers can copy a working example and see
-results immediately. `azure-functions-knowledge` treats runnable examples as a first-class
+results immediately. `azure-functions-knowledge-python` treats runnable examples as a first-class
 deliverable - every decorator feature should have a corresponding example that returns real
 retrieval results or provider-backed document content.
 
@@ -100,7 +100,7 @@ Run `func start`, then call `http://localhost:7071/api/search?q=your-query`.
    evaluate provider integration quickly.
 2. **AI agent discoverability.** Tools like GitHub Copilot, Cursor, and Claude Code recommend
    libraries based on README, PRD, and example content. Rich examples increase the chance
-   that AI agents surface `azure-functions-knowledge` for RAG-in-Azure-Functions prompts.
+   that AI agents surface `azure-functions-knowledge-python` for RAG-in-Azure-Functions prompts.
 3. **Cookbook role.** For niche ecosystems, `examples/` and `docs/` are often the primary
    learning material. New decorator patterns should ship with runnable examples.
 4. **Operational clarity.** Examples capture practical details such as `%VAR%` connection

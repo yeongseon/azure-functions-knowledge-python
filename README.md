@@ -1,4 +1,4 @@
-# azure-functions-knowledge
+# azure-functions-knowledge-python
 
 ## Ecosystem
 
@@ -6,18 +6,18 @@ This package is part of the **Azure Functions Python DX Toolkit**.
 
 | Package | Role |
 |---------|------|
-| [azure-functions-openapi](https://github.com/yeongseon/azure-functions-openapi) | OpenAPI spec generation and Swagger UI |
-| [azure-functions-validation](https://github.com/yeongseon/azure-functions-validation) | Request/response validation and serialization |
-| [azure-functions-db](https://github.com/yeongseon/azure-functions-db) | Database bindings for SQL, PostgreSQL, MySQL, SQLite, and Cosmos DB |
-| [azure-functions-langgraph](https://github.com/yeongseon/azure-functions-langgraph) | LangGraph deployment adapter for Azure Functions |
-| [azure-functions-scaffold](https://github.com/yeongseon/azure-functions-scaffold) | Project scaffolding CLI |
-| [azure-functions-logging](https://github.com/yeongseon/azure-functions-logging) | Structured logging and observability |
-| [azure-functions-doctor](https://github.com/yeongseon/azure-functions-doctor) | Pre-deploy diagnostic CLI |
-| [azure-functions-durable-graph](https://github.com/yeongseon/azure-functions-durable-graph) | Manifest-first graph runtime with Durable Functions *(experimental)* |
-| [azure-functions-python-cookbook](https://github.com/yeongseon/azure-functions-python-cookbook) | Recipes and examples |
+| [azure-functions-openapi-python](https://github.com/yeongseon/azure-functions-openapi-python) | OpenAPI spec generation and Swagger UI |
+| [azure-functions-validation-python](https://github.com/yeongseon/azure-functions-validation-python) | Request/response validation and serialization |
+| [azure-functions-db-python](https://github.com/yeongseon/azure-functions-db-python) | Database bindings for SQL, PostgreSQL, MySQL, SQLite, and Cosmos DB |
+| [azure-functions-langgraph-python](https://github.com/yeongseon/azure-functions-langgraph-python) | LangGraph deployment adapter for Azure Functions |
+| [azure-functions-scaffold-python](https://github.com/yeongseon/azure-functions-scaffold-python) | Project scaffolding CLI |
+| [azure-functions-logging-python](https://github.com/yeongseon/azure-functions-logging-python) | Structured logging and observability |
+| [azure-functions-doctor-python](https://github.com/yeongseon/azure-functions-doctor-python) | Pre-deploy diagnostic CLI |
+| [azure-functions-durable-graph-python](https://github.com/yeongseon/azure-functions-durable-graph-python) | Manifest-first graph runtime with Durable Functions *(experimental)* |
+| [azure-functions-cookbook-python](https://github.com/yeongseon/azure-functions-cookbook-python) | Recipes and examples |
 
-[![Test and Coverage](https://github.com/yeongseon/azure-functions-knowledge/actions/workflows/ci-test.yml/badge.svg)](https://github.com/yeongseon/azure-functions-knowledge/actions/workflows/ci-test.yml)
-[![PyPI version](https://badge.fury.io/py/azure-functions-knowledge.svg)](https://badge.fury.io/py/azure-functions-knowledge)
+[![Test and Coverage](https://github.com/yeongseon/azure-functions-knowledge-python/actions/workflows/ci-test.yml/badge.svg)](https://github.com/yeongseon/azure-functions-knowledge-python/actions/workflows/ci-test.yml)
+[![PyPI version](https://badge.fury.io/py/azure-functions-knowledge-python.svg)](https://badge.fury.io/py/azure-functions-knowledge-python)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 
@@ -36,7 +36,7 @@ Knowledge retrieval (RAG) decorators for Azure Functions Python v2.
 ## Installation
 
 ```bash
-pip install azure-functions-knowledge[notion]
+pip install azure-functions-knowledge-python[notion]
 ```
 
 ## Quick Start
@@ -139,13 +139,13 @@ register_provider("my-provider", MyProvider)
 
 ## Documentation
 
-Full documentation: [https://yeongseon.github.io/azure-functions-knowledge/](https://yeongseon.github.io/azure-functions-knowledge/)
+Full documentation: [https://yeongseon.github.io/azure-functions-knowledge-python/](https://yeongseon.github.io/azure-functions-knowledge-python/)
 
 ## Development
 
 ```bash
-git clone https://github.com/yeongseon/azure-functions-knowledge.git
-cd azure-functions-knowledge
+git clone https://github.com/yeongseon/azure-functions-knowledge-python.git
+cd azure-functions-knowledge-python
 make install
 make check-all
 ```

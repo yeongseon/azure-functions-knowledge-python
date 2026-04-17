@@ -1,6 +1,6 @@
 # DESIGN.md
 
-Design Principles for `azure-functions-knowledge`
+Design Principles for `azure-functions-knowledge-python`
 
 ## Purpose
 
@@ -67,8 +67,8 @@ flowchart TD
 
 ## Integration Boundaries
 
-- API schema generation and Swagger UI belong to `azure-functions-openapi`.
-- Request/response validation belongs to `azure-functions-validation`.
+- API schema generation and Swagger UI belong to `azure-functions-openapi-python`.
+- Request/response validation belongs to `azure-functions-validation-python`.
 - This repository owns RAG-focused decorator wiring, provider abstraction, and `Document` injection.
 
 ## Compatibility Policy
@@ -93,7 +93,7 @@ flowchart TD
 
 ## See Also
 
-- [azure-functions-openapi — Architecture](https://github.com/yeongseon/azure-functions-openapi) — OpenAPI generation and Swagger UI
-- [azure-functions-validation — Architecture](https://github.com/yeongseon/azure-functions-validation) — Request/response validation pipeline
-- [azure-functions-logging — Architecture](https://github.com/yeongseon/azure-functions-logging) — Structured logging with contextvars
-- [azure-functions-doctor — Architecture](https://github.com/yeongseon/azure-functions-doctor) — Pre-deploy diagnostic CLI
+- [azure-functions-openapi-python — Architecture](https://github.com/yeongseon/azure-functions-openapi-python) — OpenAPI generation and Swagger UI
+- [azure-functions-validation-python — Architecture](https://github.com/yeongseon/azure-functions-validation-python) — Request/response validation pipeline
+- [azure-functions-logging-python — Architecture](https://github.com/yeongseon/azure-functions-logging-python) — Structured logging with contextvars
+- [azure-functions-doctor-python — Architecture](https://github.com/yeongseon/azure-functions-doctor-python) — Pre-deploy diagnostic CLI

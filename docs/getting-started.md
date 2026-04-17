@@ -5,7 +5,7 @@
 1. Install the package with the Notion provider:
 
 ```bash
-pip install azure-functions-knowledge[notion]
+pip install azure-functions-knowledge-python[notion]
 ```
 
 2. Set up your Notion API token as an environment variable:
