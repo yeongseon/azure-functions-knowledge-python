@@ -63,6 +63,7 @@ build-backend = "hatchling.build"
 sources = ["src"]
 
 [tool.hatch.build.targets.wheel]
+packages = ["src/azure_functions_knowledge"]
 
 [tool.hatch.version]
 path = "src/azure_functions_knowledge/__init__.py"
