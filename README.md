@@ -1,5 +1,8 @@
 # Azure Functions Knowledge
 
+> Part of the **Azure Functions Python DX Toolkit** — dogfood-tested by [azure-functions-cookbook-python](https://github.com/yeongseon/azure-functions-cookbook-python).
+
+
 ## Ecosystem
 
 This package is part of the **Azure Functions Python DX Toolkit**.
