@@ -1,4 +1,4 @@
-# azure-functions-knowledge-python
+# Azure Functions Knowledge
 
 ## Ecosystem
 
