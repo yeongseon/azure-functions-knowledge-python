@@ -35,7 +35,7 @@ class TestDocument:
 
     def test_keyword_only(self) -> None:
         try:
-            Document("page-1", "content", "title", "url", "source")  # type: ignore[misc]
+            Document("page-1", "content", "title", "url", "source")  # type: ignore[call-arg]
             msg = "Should have raised TypeError"
             raise AssertionError(msg)
         except TypeError:
