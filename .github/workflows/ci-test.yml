@@ -10,11 +10,55 @@ permissions:
   contents: read
 
 jobs:
+  # Lint, type-check and workflow hygiene run once on a single pinned
+  # interpreter (Python 3.10). These checks are interpreter-agnostic, so
+  # fanning them across the matrix would only duplicate work.
+  quality:
+    name: Lint, type-check & workflow hygiene (Py 3.10)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.10"
+
+      - name: Install package with dev extras
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev,docs,all]"
+
+      - name: Release-workflow hygiene lint
+        run: python tools/lint_release_workflows.py
+
+      - name: Workflow pin-hygiene lint
+        run: python tools/lint_workflow_pins.py
+
+      - name: Hatch/matrix hygiene lint
+        run: python tools/lint_hatch_matrix.py
+
+      - name: Ruff style check
+        run: ruff check src tests
+
+      - name: Type check (mypy)
+        run: mypy src tests
+
+      - name: Security scan (bandit)
+        run: python -m bandit -r src
+
   test:
+    name: Test (Py ${{ matrix.python-version }})
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+        # azure-functions is capped to <2.0.0 (the 1.x line), which is only
+        # installable on Python <3.13. Python 3.13/3.14 require the 2.x SDK and
+        # are tracked separately; advertising them here without a real 2.x lane
+        # would be a false signal.
+        python-version: ["3.10", "3.11", "3.12"]
 
     steps:
       - name: Checkout code
@@ -25,13 +69,32 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install Hatch and dependencies via Makefile
+      - name: Assert the runtime interpreter matches the matrix cell
+        # Belt-and-braces: tests below run directly on this interpreter (raw
+        # pytest, NOT the Python-3.10-pinned hatch env), so 3.11/3.12 are
+        # genuinely exercised. This guard fails loudly if that ever drifts.
+        env:
+          EXPECTED: ${{ matrix.python-version }}
         run: |
-          pip install hatch
-          make install
+          python - <<'PY'
+          import os, sys
+          expected = tuple(int(p) for p in os.environ["EXPECTED"].split("."))
+          actual = sys.version_info[: len(expected)]
+          assert actual == expected, f"interpreter {actual} != matrix {expected}"
+          print(f"interpreter OK: {sys.version.split()[0]}")
+          PY
 
-      - name: Run full quality checks
-        run: make check-all
+      - name: Install package with dev extras (on the matrix interpreter)
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev,all]"
+
+      - name: Run tests on the matrix interpreter
+        # Raw pytest on the interpreter provisioned above (NOT through the
+        # Python-3.10-pinned hatch env). The repo pytest config enables --cov
+        # with fail_under=95 and deselects e2e; tests/e2e is ignored here
+        # because it is a separate real-Azure lane and pulls extra deps.
+        run: pytest --ignore=tests/e2e
 
       - name: Verify coverage output
         run: ls -lh coverage.xml
