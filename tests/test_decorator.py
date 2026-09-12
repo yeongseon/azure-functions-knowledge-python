@@ -75,6 +75,22 @@ class TestInputDecorator:
         result = handler(req="test")
         assert result[0].content == "Result for: search for test"
 
+    def test_callable_query_positional_arg(self, kb: KnowledgeBindings) -> None:
+        # Regression: a positional handler argument must reach a dynamic
+        # ``query`` callable, not only a keyword one (handler(req) had
+        # previously resolved to an empty query call).
+        @kb.input(
+            "docs",
+            provider="fake",
+            query=lambda req: f"search for {req}",
+            connection="token",
+        )
+        def handler(req: str, docs: list[Document]) -> list[Document]:
+            return docs
+
+        result = handler("test")
+        assert result[0].content == "Result for: search for test"
+
     def test_custom_top(self, kb: KnowledgeBindings) -> None:
         @kb.input("docs", provider="fake", query="q", top=3, connection="tok")
         def handler(timer: Any, docs: list[Document]) -> int:
@@ -228,6 +244,22 @@ class TestAsyncHandlers:
         result = await handler(timer=MagicMock())
         assert len(result) == 5
         assert result[0].content == "Result for: async-q"
+
+    @pytest.mark.asyncio()
+    async def test_async_callable_query_positional_arg(self, kb: KnowledgeBindings) -> None:
+        # Regression: positional args must reach a dynamic query callable on
+        # async handlers too (handler(req) vs handler(req=...)).
+        @kb.input(
+            "docs",
+            provider="fake",
+            query=lambda req: f"async {req}",
+            connection="tok",
+        )
+        async def handler(req: str, docs: list[Document]) -> list[Document]:
+            return docs
+
+        result = await handler("test")
+        assert result[0].content == "Result for: async test"
 
     @pytest.mark.asyncio()
     async def test_async_inject_client(self, kb: KnowledgeBindings) -> None:
