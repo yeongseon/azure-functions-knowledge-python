@@ -161,10 +161,24 @@ class KnowledgeBindings:
         """
         is_async = inspect.iscoroutinefunction(fn)
 
+        sig = inspect.signature(fn, follow_wrapped=False)
+
+        def _bind_all(args: tuple[Any, ...], kwargs: dict[str, Any]) -> dict[str, Any]:
+            # Map positional AND keyword call arguments to their parameter names
+            # so dynamic ``query`` callables can resolve against positional args
+            # (e.g. ``handler(req)``), not just keyword ones. Resolution only reads
+            # the validated resolver params, so incidental names (self/cls, *args,
+            # **kwargs buckets) are harmless.
+            try:
+                bound = sig.bind_partial(*args, **kwargs)
+            except TypeError:
+                return dict(kwargs)
+            return dict(bound.arguments)
+
         if is_async:
 
             async def async_wrapper(*args: Any, **kwargs: Any) -> Any:
-                cm = make_injection(kwargs, True)
+                cm = make_injection(_bind_all(args, kwargs), True)
                 # Entering may create a provider and/or run a blocking search,
                 # so offload it to keep the event loop responsive.
                 value = await asyncio.to_thread(cm.__enter__)
@@ -188,7 +202,7 @@ class KnowledgeBindings:
         else:
 
             def sync_wrapper(*args: Any, **kwargs: Any) -> Any:
-                with make_injection(kwargs, False) as value:
+                with make_injection(_bind_all(args, kwargs), False) as value:
                     kwargs[arg_name] = value
                     return fn(*args, **kwargs)
 
