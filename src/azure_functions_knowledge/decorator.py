@@ -34,8 +34,6 @@ def _mark_decorator(fn: Callable[..., Any], name: str) -> None:
     setattr(fn, _KNOWLEDGE_DECORATOR_ATTR, _get_decorators(fn) | {name})
 
 
-
-
 def _check_composition(fn: Callable[..., Any], name: str) -> None:
     existing = _get_decorators(fn)
 
