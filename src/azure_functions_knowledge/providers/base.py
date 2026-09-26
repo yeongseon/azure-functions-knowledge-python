@@ -13,9 +13,7 @@ _PROVIDER_REGISTRY: dict[str, type[KnowledgeProvider]] = {}
 class KnowledgeProvider(Protocol):
     """Protocol that all knowledge providers must satisfy."""
 
-    def __init__(
-        self, *, connection: str | Mapping[str, str], **kwargs: Any
-    ) -> None: ...
+    def __init__(self, *, connection: str | Mapping[str, str], **kwargs: Any) -> None: ...
 
     def search(self, query: str, *, top: int = 5) -> list[Document]: ...
 
