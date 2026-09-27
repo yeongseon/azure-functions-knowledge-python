@@ -276,9 +276,7 @@ class TestAsyncHandlers:
         assert len(captured[1]) == 5
 
     @pytest.mark.asyncio()
-    async def test_async_input_propagates_error_and_closes(
-        self, kb: KnowledgeBindings
-    ) -> None:
+    async def test_async_input_propagates_error_and_closes(self, kb: KnowledgeBindings) -> None:
         created: list[FakeProvider] = []
 
         class TrackingProvider(FakeProvider):
