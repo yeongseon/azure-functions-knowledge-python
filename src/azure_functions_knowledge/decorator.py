@@ -98,7 +98,16 @@ def _provider_context(
     )
     try:
         yield provider
-    finally:
+    except BaseException as handler_error:
+        try:
+            provider.close()
+        except BaseException as cleanup_error:
+            logger.exception("Provider cleanup failed while handling a handler error")
+            add_note = getattr(handler_error, "add_note", None)
+            if add_note is not None:
+                add_note(f"Provider cleanup also failed: {cleanup_error!r}")
+        raise
+    else:
         provider.close()
 
 

@@ -44,7 +44,13 @@ class FakeProvider:
         self.closed = True
 
 
+class CleanupFailProvider(FakeProvider):
+    def close(self) -> None:
+        raise OSError("cleanup failed")
+
+
 register_provider("fake", FakeProvider)
+register_provider("cleanup-fail", CleanupFailProvider)
 
 
 @pytest.fixture()
@@ -208,6 +214,31 @@ class TestInjectClientDecorator:
             handler(timer=MagicMock())
         assert captured[0].closed
 
+    def test_handler_error_survives_provider_cleanup_error(
+        self, kb: KnowledgeBindings, caplog: pytest.LogCaptureFixture
+    ) -> None:
+        handler_error = RuntimeError("handler failed")
+
+        @kb.inject_client("client", provider="cleanup-fail", connection="tok")
+        def handler(timer: Any, client: Any) -> None:
+            raise handler_error
+
+        with pytest.raises(RuntimeError) as raised:
+            handler(timer=MagicMock())
+
+        assert raised.value is handler_error
+        assert "Provider cleanup failed" in caplog.text
+
+    def test_provider_cleanup_error_propagates_after_handler_success(
+        self, kb: KnowledgeBindings
+    ) -> None:
+        @kb.inject_client("client", provider="cleanup-fail", connection="tok")
+        def handler(timer: Any, client: Any) -> str:
+            return "ok"
+
+        with pytest.raises(OSError, match="cleanup failed"):
+            handler(timer=MagicMock())
+
     def test_signature_hides_injected_param(self, kb: KnowledgeBindings) -> None:
         @kb.inject_client("client", provider="fake", connection="tok")
         def handler(timer: Any, client: Any) -> None:
@@ -297,6 +328,22 @@ class TestAsyncHandlers:
         # mirroring synchronous ``with`` semantics.
         assert len(created) == 1
         assert created[0].closed is True
+
+    @pytest.mark.asyncio()
+    async def test_async_handler_error_survives_provider_cleanup_error(
+        self, kb: KnowledgeBindings, caplog: pytest.LogCaptureFixture
+    ) -> None:
+        handler_error = RuntimeError("async handler failed")
+
+        @kb.inject_client("client", provider="cleanup-fail", connection="tok")
+        async def handler(timer: Any, client: Any) -> None:
+            raise handler_error
+
+        with pytest.raises(RuntimeError) as raised:
+            await handler(timer=MagicMock())
+
+        assert raised.value is handler_error
+        assert "Provider cleanup failed" in caplog.text
 
 
 class TestToolkitMetadata:
