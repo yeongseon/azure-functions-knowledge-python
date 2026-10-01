@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import sys
+import warnings
+
 __version__ = "0.1.1"
 
 import azure_functions_knowledge.providers.notion as _notion_module  # noqa: F401
@@ -27,3 +30,13 @@ __all__ = [
     "get_registered_providers",
     "register_provider",
 ]
+
+
+if sys.version_info < (3, 11):
+    warnings.warn(
+        "azure-functions-knowledge will drop support for Python 3.10 in its next minor release. "
+        "Python 3.10 reaches end of life in October 2026; upgrade to Python 3.11 "
+        "or newer to keep receiving updates.",
+        FutureWarning,
+        stacklevel=2,
+    )

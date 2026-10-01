@@ -2,7 +2,7 @@
 
 ## Which Python versions are supported?
 
-Python 3.11 through 3.14 (`>=3.11, <3.15`).
+Python 3.10 through 3.14 (`>=3.10, <3.15`).
 
 ## Do I always need the Notion extra?
 
