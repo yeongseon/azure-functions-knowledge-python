@@ -78,8 +78,8 @@ flowchart TD
 
 ## Compatibility Policy
 
-- Minimum supported Python version: `3.10`
-- Supported Python range: `>=3.10,<3.15`
+- Minimum supported Python version: `3.11`
+- Supported Python range: `>=3.11,<3.15`
 - Supported runtime target: Azure Functions Python v2 programming model
 - Development status: Alpha (`Development Status :: 3 - Alpha`)
 
