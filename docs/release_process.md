@@ -147,6 +147,5 @@ pip install dist/azure_functions_knowledge-<version>-py3-none-any.whl
 ## Related
 
 - [CHANGELOG.md](https://github.com/yeongseon/azure-functions-knowledge-python/blob/main/CHANGELOG.md)
-- [Development Guide](development.md)
-- [Contributing](contributing.md)
+- [Contributing](https://github.com/yeongseon/azure-functions-knowledge-python/blob/main/CONTRIBUTING.md)
 - [Release Please](https://github.com/googleapis/release-please)
