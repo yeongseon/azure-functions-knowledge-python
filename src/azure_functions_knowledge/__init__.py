@@ -3,7 +3,7 @@ from __future__ import annotations
 import sys
 import warnings
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 import azure_functions_knowledge.providers.notion as _notion_module  # noqa: F401
 
