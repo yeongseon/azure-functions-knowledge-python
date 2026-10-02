@@ -1,5 +1,15 @@
 # azure-functions-knowledge-python
 
+> [!WARNING]
+> **Retired and unsupported as of 2026-10-02.**
+>
+> This project is no longer maintained and will not receive fixes or security updates.
+> It has never been published to PyPI by `yeongseon`; do not treat any PyPI project named
+> `azure-functions-knowledge` as an official release from this repository. Existing history, tags, and
+> GitHub releases are kept only as historical source snapshots.
+>
+> Maintained projects in this family: [azure-functions-cookbook-python](https://github.com/yeongseon/azure-functions-cookbook-python).
+
 > ⚠️ **实验性（Experimental）** — 处于模式探索阶段。API 和行为可能会变化，暂不建议作为生产依赖使用。
 
 [![Test and Coverage](https://github.com/yeongseon/azure-functions-knowledge-python/actions/workflows/ci-test.yml/badge.svg)](https://github.com/yeongseon/azure-functions-knowledge-python/actions/workflows/ci-test.yml)
