@@ -1,5 +1,15 @@
 # Azure Functions Knowledge
 
+> [!WARNING]
+> **Retired and unsupported as of 2026-10-02.**
+>
+> This project is no longer maintained and will not receive fixes or security updates.
+> It has never been published to PyPI by `yeongseon`; do not treat any PyPI project named
+> `azure-functions-knowledge` as an official release from this repository. Existing history, tags, and
+> GitHub releases are kept only as historical source snapshots.
+>
+> Maintained projects in this family: [azure-functions-cookbook-python](https://github.com/yeongseon/azure-functions-cookbook-python).
+
 Knowledge retrieval (RAG) decorators for Azure Functions Python v2.
 
 ## Features

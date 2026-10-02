@@ -1,6 +1,14 @@
 # Azure Functions Knowledge
 
-> ⚠️ **Experimental** — pattern exploration. APIs and behavior may change. Not recommended as a production dependency yet.
+> [!WARNING]
+> **Retired and unsupported as of 2026-10-02.**
+>
+> This project is no longer maintained and will not receive fixes or security updates.
+> It has never been published to PyPI by `yeongseon`; do not treat any PyPI project named
+> `azure-functions-knowledge` as an official release from this repository. Existing history, tags, and
+> GitHub releases are kept only as historical source snapshots.
+>
+> Maintained projects in this family: [azure-functions-cookbook-python](https://github.com/yeongseon/azure-functions-cookbook-python).
 
 > Part of the **Azure Functions Python DX Toolkit** — dogfood-tested by [azure-functions-cookbook-python](https://github.com/yeongseon/azure-functions-cookbook-python).
 
