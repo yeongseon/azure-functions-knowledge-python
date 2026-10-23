@@ -25,6 +25,8 @@ Implementation tool choice never adds a mandatory AI review route.
 - Trust required **GitHub CI** checks at the final head for official
   automated validation. Running `make check-all` locally is recommended,
   not a separate merge condition; do not assume a specific runner model.
+  If required CI is missing or pending, do not treat local tests or AI review
+  as a substitute and do not merge.
 - Review correctness, tests, security, maintainability and compatibility.
   AI review outputs are advisory inputs, not approvals or CI substitutes.
 - Resolve actionable findings; the responsible maintainer decides on
