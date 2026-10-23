@@ -20,7 +20,7 @@
 
 ### Test Coverage
 - Maintain test coverage at **95% or above** for committed changes and PRs.
-- Run `hatch run pytest --cov --cov-report=term-missing -q` to verify before submitting changes.
+- For optional local verification, run `hatch run pytest --cov --cov-report=term-missing -q`; required GitHub CI remains authoritative.
 - Any PR that drops coverage below 95% must include additional tests to compensate.
 - Preserve the package's Python compatibility and public API behavior unless the change explicitly updates the contract.
 - Keep documentation, examples, and tests synchronized.
@@ -36,6 +36,27 @@
 - Pin every external GitHub Action `uses:` reference in `.github/workflows/` to a full commit SHA with a `# vX.Y.Z` comment.
 - Only local composite actions (`uses: ./...`) and the PyPA publish action (`pypa/gh-action-pypi-publish`) may skip SHA pinning; document any exception with an inline comment at the call site.
 - Dependabot updates SHA-pinned references on the configured schedule and opens PRs when new versions are available.
+
+## Unified PR Review and Merge Policy
+
+Use the same criteria for human-authored and AI-assisted changes,
+including OpenCode, Codex, Claude Code, ChatGPT, Copilot and other agents.
+No tool-specific AI review, design consultation or automated approval is
+required by policy.
+
+1. Keep one focused PR with tests, docs and honest validation evidence.
+2. Treat required **GitHub CI** checks on the final code state as
+   authoritative. Local tests are encouraged but not an extra merge
+   gate. Preserve the current type checks, coverage, security, runtime
+   compatibility, Azure tests and release requirements. CI runner type
+   is not prescribed here.
+3. Review correctness, regression risk, scope, security, and API
+   compatibility. Oracle, Copilot and `agent-review` are optional
+   **advisory** review sources, not human approval or test evidence.
+4. Confirm final required checks and resolve or disposition defects.
+   The responsible maintainer decides whether to merge. Changes to
+   credentials, workflow permissions or publishing receive independent
+   high-risk assessment.
 
 ## PR Workflow
 
