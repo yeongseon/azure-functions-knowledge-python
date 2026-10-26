@@ -1,8 +1,14 @@
 # Getting Started
 
+> **Retired and unsupported as of 2026-10-02.** No maintenance, fixes, or security
+> updates. Never published to PyPI by `yeongseon`; history, tags, and GitHub releases
+> are historical source snapshots only. A same-named PyPI project is not an
+> official release. All setup and API examples below are historical reference,
+> not supported onboarding or a recommendation to install from PyPI.
+
 ## Setup
 
-1. Install the package with the Notion provider:
+1. Historical intended installation with the Notion provider (never officially published):
 
 ```bash
 pip install azure-functions-knowledge[notion]
