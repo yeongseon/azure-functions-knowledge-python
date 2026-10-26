@@ -1,5 +1,10 @@
 # Troubleshooting
 
+> **Retired and unsupported as of 2026-10-02.** No fixes or security updates.
+> This page preserves historical troubleshooting examples. This project was never
+> published to PyPI by `yeongseon`; the command below is not a recommendation to
+> install a same-named PyPI project or evidence of an official package release.
+
 Common problems and how to resolve them.
 
 ## `ProviderError: notion-client is required for NotionProvider`

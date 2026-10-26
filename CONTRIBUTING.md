@@ -1,6 +1,13 @@
 # Contributing Guide
 
-We welcome contributions to the `azure-functions-knowledge-python` project.
+**Retired and unsupported as of 2026-10-02.** This project receives no maintenance,
+fixes, or security updates. It has never been published to PyPI by `yeongseon`;
+history, tags, and GitHub releases are historical source snapshots only.
+Do not treat a same-named PyPI project as an official release.
+
+Contributions should preserve history or correct retirement documentation. The
+development instructions below are for that limited work, not an invitation to
+resume features or publishing. Reactivation requires an explicit maintainer decision.
 
 ## Branch Strategy
 
@@ -157,7 +164,12 @@ Pull requests are squash-merged and the pull request title becomes the final com
 
 Issue titles are not enforced. Anyone can open an issue without knowing this convention; maintainers adjust the title during triage.
 
-## Releases
+## Releases (historical only)
+
+No PyPI release or Trusted Publisher setup is planned. The following describes
+the former intended release design, not an active publishing instruction. Do not
+renew credentials, enable release/e2e workflows, or execute release recovery
+without an explicit maintainer decision to reactivate the project.
 
 Merging to `main` does not publish a release.
 

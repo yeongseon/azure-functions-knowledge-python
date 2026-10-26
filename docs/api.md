@@ -1,5 +1,9 @@
 # API Reference
 
+> **Retired and unsupported as of 2026-10-02.** No maintenance, fixes, or security
+> updates. Never published to PyPI by `yeongseon`; history, tags, and GitHub releases
+> are historical source snapshots only. The API below is historical reference.
+
 The complete public surface of `azure-functions-knowledge-python`. Every symbol
 listed here is exported from the top-level `azure_functions_knowledge` package
 (and enforced by `tests/test_public_api.py`), except where noted as internal.
