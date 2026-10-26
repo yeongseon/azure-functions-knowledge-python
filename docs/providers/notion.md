@@ -1,5 +1,10 @@
 # Notion Provider
 
+> **Retired and unsupported as of 2026-10-02.** No fixes or security updates.
+> This page is historical reference. The PyPI command below describes intended
+> installation only; this project was never published to PyPI by `yeongseon`.
+> A same-named PyPI project is not an official release from this repository.
+
 `NotionProvider` is the built-in [`KnowledgeProvider`](../api.md#knowledgeprovider)
 backed by the [Notion API](https://developers.notion.com/). It is registered
 under the name `"notion"`.
