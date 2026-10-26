@@ -1,46 +1,22 @@
 # Support Policy
 
-## Supported Environment
-
-* Python: 3.10 and above
-* Runtime: Azure Functions (Python)
+**Retired and unsupported as of 2026-10-02.** This project is no longer maintained
+and will not receive fixes or security updates. It has never been published to
+PyPI by `yeongseon`; history, tags, and GitHub releases are historical source
+snapshots only. A same-named PyPI project is not an official release from here.
 
 ## Support Scope
 
-This project is maintained by a single developer and support is provided on a
-best-effort basis.
+There are no supported releases, Python versions, providers, or deployment
+environments. Retained examples and compatibility metadata describe historical
+source, not a current support commitment. No feature, bug-fix, deprecation, or
+release schedule is promised.
 
-Supported requests:
+## Historical Reports
 
-* Bug reports with clear reproduction steps
-* Feature requests aligned with the project scope
-* Usage questions related to the package itself
+GitHub Issues may be used voluntarily to report inaccurate retirement
+documentation or historical observations. There is no promised response time,
+follow-up cadence, investigation, or fix. This is not an active feature-request
+or usage-support service.
 
-Out of scope:
-
-* Custom feature development
-* Environment-specific debugging
-* General Azure infrastructure consulting
-
-## Support Channels
-
-Preferred channels:
-
-* GitHub Issues for bugs and feature requests
-* GitHub Discussions for usage questions
-* GitHub Security Advisories for security reports
-
-Response targets:
-
-* Initial response: within 3 business days on a best-effort basis
-* Follow-up updates: weekly for active issues when applicable
-
-## Deprecation Policy
-
-* Deprecated behavior will be documented before removal
-* Deprecations are announced at least one minor release in advance
-* Removals happen in a later release when practical
-
-## Security Issues
-
-Report security issues privately when possible. See `SECURITY.md` for details.
+For voluntary private security reports, see [SECURITY.md](SECURITY.md).
