@@ -1,5 +1,9 @@
 # Architecture
 
+> **Retired and unsupported as of 2026-10-02.** No maintenance, fixes, or security
+> updates. Never published to PyPI by `yeongseon`; history, tags, and GitHub releases
+> are historical source snapshots only. The architecture below is historical reference.
+
 This page explains what happens between a decorated Azure Functions handler and
 a knowledge provider, and provides the canonical architecture diagram for the
 package. (`DESIGN.md` links here.)
