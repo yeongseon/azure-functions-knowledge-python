@@ -1,5 +1,18 @@
 # AGENTS.md
 
+## Retirement boundary
+
+**Retired and unsupported as of 2026-10-02.** No maintenance, fixes, or security
+updates are provided. This project has never been published to PyPI by `yeongseon`;
+history, tags, and GitHub releases are historical source snapshots, not supported
+package releases. Do not treat a same-named PyPI project as an official release.
+
+Work here is limited to preserving history and correcting retirement documentation
+unless the maintainer explicitly decides to reactivate the project. Do not resume
+feature work, renew publishing credentials, configure a Trusted Publisher, enable
+release/Azure e2e workflows, publish, or run release recovery as a default task.
+The release procedures below are historical design records, not authorization.
+
 ## Purpose
 `azure-functions-knowledge-python` provides knowledge retrieval (RAG) decorators for Azure Functions Python v2 applications.
 
@@ -101,7 +114,11 @@ This repository is **issue-based, not milestone-based**. Track and group work us
 - `make typecheck`
 - `make build`
 
-## Release Process
+## Release Process (historical only)
+
+The following describes the former intended automation, not a completed PyPI
+publication or a current release contract. No PyPI release is planned. Do not
+execute these procedures without an explicit maintainer reactivation decision.
 
 Three tools, one job each. Nothing else participates.
 
@@ -152,7 +169,7 @@ Every tier runs inside `publish-pypi.yml` on the tag, and **all of them gate the
 
 Unlike the sibling repos, this package has **no** cookbook host-smoke tier. The real-Azure e2e deploys this package's own example app and exercises the `@kb.input` / `@kb.inject_client` decorators end-to-end, so it *is* the package-native runtime proof. Critically, the certification builds the candidate **wheel from the release ref** and bundles it into the example app (`examples/e2e_app/wheels/`), so Azure certifies the release commit's source — not the last-published PyPI build. The e2e also asserts that `%STATIC_CONNECTION%` resolved on the worker (the `StaticProvider` refuses to start otherwise), so a broken `%VAR%` substitution or provider-registration regression cannot pass.
 
-### Recovery
+### Recovery (historical, not an instruction to execute)
 - **Any gate failed.** Nothing was uploaded, so the version is still free. Fix the cause and re-run the workflow on the same tag (`gh workflow run publish-pypi.yml --ref main -f tag=vX.Y.Z`), or fix forward on `main` and let the next Release PR cut a new version. Never move or reuse a tag.
 - **A tag exists but was never published.** A valid resting state. Re-run publish, or abandon the version and let the next release take the following number.
 - **Release PR stopped appearing.** First check that `RELEASE_PLEASE_TOKEN` has not expired. Then check for a stale `autorelease: pending` label on an already-merged Release PR — Release Please treats that as a release still in flight and will not open another. This failure is silent: the workflow still reports success.
