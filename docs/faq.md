@@ -1,8 +1,13 @@
 # FAQ
 
+> **Retired and unsupported as of 2026-10-02.** No fixes or security updates.
+> These answers describe historical source, not current support. This project
+> was never published to PyPI by `yeongseon`; the install example is historical
+> intent only, not a recommendation to install a same-named PyPI project.
+
 ## Which Python versions are supported?
 
-Python 3.10 through 3.14 (`>=3.10, <3.15`).
+None are supported now. Historical metadata declares `>=3.10, <3.15`.
 
 ## Do I always need the Notion extra?
 

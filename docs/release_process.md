@@ -1,6 +1,16 @@
-# Release Process
+# Release Process (Historical)
 
-This document describes how a new version of **azure-functions-knowledge** reaches PyPI.
+**Retired and unsupported as of 2026-10-02.** No maintenance, fixes, or security
+updates are provided. This project has never been published to PyPI by `yeongseon`;
+history, tags, and GitHub releases are historical source snapshots only. A
+same-named PyPI project is not an official release from this repository.
+
+This page preserves the former intended release design, not evidence that
+publication occurred. No PyPI release or Trusted Publisher setup is planned.
+All commands and recovery steps below are **historical, not instructions to
+execute**. Do not renew publishing credentials, enable release/Azure e2e
+automation, publish to PyPI or TestPyPI, or run break-glass recovery without an
+explicit maintainer decision to reactivate the project.
 
 Releases are automated by [Release Please](https://github.com/googleapis/release-please). It decides the
 version, writes the changelog, and cuts the tag. It does **not** publish — publication is a separate,
@@ -128,7 +138,7 @@ for the version, changelog, or tags — or push an ungated artifact to PyPI.
 
 ---
 
-## Still-current Makefile commands
+## Historical Makefile commands
 
 | Task | Command |
 |------|---------|

@@ -18,7 +18,6 @@
 [![codecov](https://codecov.io/gh/yeongseon/azure-functions-knowledge-python/branch/main/graph/badge.svg)](https://codecov.io/gh/yeongseon/azure-functions-knowledge-python)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://pre-commit.com/)
 [![Docs](https://img.shields.io/badge/docs-yeongseon.dev-blue)](https://yeongseon.dev/azure-functions-python/knowledge/)
-[![PyPI version](https://badge.fury.io/py/azure-functions-knowledge.svg)](https://badge.fury.io/py/azure-functions-knowledge)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -26,7 +25,9 @@ Read this in: [한국어](README.ko.md) | [日本語](README.ja.md) | [简体中
 
 Knowledge retrieval (RAG) decorators for Azure Functions Python v2.
 
-> **Python 3.10 is deprecated.** Support ends in the next minor release — Python 3.10 reaches end of life in October 2026. Importing the package on Python 3.10 emits a `FutureWarning`; upgrade to Python 3.11 or newer.
+> **Historical compatibility note:** importing the preserved source on Python 3.10
+> emits a `FutureWarning`. There is no planned next minor release and no supported
+> Python version for this retired project.
 
 ## Why this exists
 
@@ -47,6 +48,11 @@ Retrieval-augmented generation on Azure Functions usually means hand-wiring a pr
 - **Not a native Azure Functions binding** — the `@kb.*` decorators are Python function wrappers, not host-registered bindings.
 
 ## Installation
+
+**Historical example only, not an official installation path.** The maintainer
+never published this package to PyPI. Do not use the command below as a
+recommendation to install a same-named project. Quick-start and API examples
+are retained as historical technical reference, without support.
 
 ```bash
 pip install azure-functions-knowledge[notion]

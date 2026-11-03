@@ -1,5 +1,10 @@
 # Testing
 
+> **Retired and unsupported as of 2026-10-02.** No maintenance, fixes, or security
+> updates. Never published to PyPI by `yeongseon`; history, tags, and GitHub releases
+> are historical source snapshots only. Local documentation validation is permitted;
+> retained Azure/release instructions are not authorization to reactivate automation.
+
 How to run the test suite and how to test handlers that use knowledge bindings.
 
 ## Running the suite
