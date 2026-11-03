@@ -1,9 +1,15 @@
 # Security Policy
 
+**Retired and unsupported as of 2026-10-02.** No maintenance, fixes, or security
+updates are provided. Never published to PyPI by `yeongseon`; history, tags, and
+GitHub releases are historical source snapshots only. A same-named PyPI project
+is not an official release from this repository.
+
 ## Reporting a Vulnerability
 
-We take security seriously. If you discover a vulnerability, please report it
-responsibly and avoid public disclosure until a fix is available.
+Historical security observations may be reported privately through the contacts
+below on a voluntary basis. There is no guarantee of a response, investigation,
+mitigation, or fix; do not assume a fix will become available.
 
 ### Preferred: GitHub Security Advisory
 
@@ -24,12 +30,12 @@ If you prefer email, contact: yeongseon.choe@gmail.com
 
 ### Response Timeline
 
-* Initial response: within 48 hours
-* Status update: within 7 days
+No initial-response or status-update timeline is promised.
 
 ## Supported Versions
 
 | Version | Supported |
 | ------- | --------- |
-| Latest release | :white_check_mark: |
-| Older releases | :x: |
+| All historical source snapshots and tags | :x: |
+
+There are no supported releases.

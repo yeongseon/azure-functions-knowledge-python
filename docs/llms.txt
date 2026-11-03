@@ -2,10 +2,17 @@
 
 > Knowledge retrieval (RAG) decorators for Azure Functions Python v2.
 
-Part of the **Azure Functions Python DX Toolkit**. Decorator-based knowledge retrieval (RAG) for Azure Functions Python v2 — inject search results or a provider client into your handler from a pluggable provider registry (Notion today, more to come). Install with `pip install azure-functions-knowledge` (once published).
+**Retired and unsupported as of 2026-10-02.** No maintenance, fixes, or security
+updates. Never published to PyPI by `yeongseon`; history, tags, and GitHub releases
+are historical source snapshots only. A same-named PyPI project is not an
+official release. No future publication or provider development is planned.
+
+Historical Azure Functions Python DX Toolkit experiment: decorator-based knowledge
+retrieval (RAG) with a pluggable provider registry and a built-in Notion provider.
+The retained technical examples are reference material, not supported onboarding.
 
 ## Getting Started
-- [Installation](https://yeongseon.dev/azure-functions-python/knowledge/installation/): Install the package.
+- [Installation](https://yeongseon.dev/azure-functions-python/knowledge/installation/): Retirement boundary and historical source setup.
 - [Getting Started](https://yeongseon.dev/azure-functions-python/knowledge/getting-started/): Minimal end-to-end example with the `input` and `inject_client` decorators.
 
 ## Overview

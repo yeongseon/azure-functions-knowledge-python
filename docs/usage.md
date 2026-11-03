@@ -1,5 +1,9 @@
 # Usage
 
+> **Retired and unsupported as of 2026-10-02.** No maintenance, fixes, or security
+> updates. Never published to PyPI by `yeongseon`; history, tags, and GitHub releases
+> are historical source snapshots only. The examples below are historical reference.
+
 Practical recipes for the two decorators, async handlers, error handling, and
 custom providers. Runnable versions of these live in the
 [`examples/`](https://github.com/yeongseon/azure-functions-knowledge-python/tree/main/examples)

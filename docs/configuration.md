@@ -1,5 +1,9 @@
 # Configuration
 
+> **Retired and unsupported as of 2026-10-02.** No maintenance, fixes, or security
+> updates. Never published to PyPI by `yeongseon`; history, tags, and GitHub releases
+> are historical source snapshots only. The configuration below is historical reference.
+
 Every decorator takes a `connection` argument that tells the provider how to
 authenticate. Connections support `%VAR%` environment-variable substitution so
 you never have to hard-code secrets.
